@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="display-1">Reservations</h1>
+    <div class="row">
+        <div class="col-12">
+            <ul class="list-group">
+                {% for reservation in reservations %}
+                <a class="list-group-item" href="{% url 'reservations' %}?id={{reservation.id}}">{{reservation.surname}} {{reservation.name}}</a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

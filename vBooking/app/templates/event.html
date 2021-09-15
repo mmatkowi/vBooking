@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+{{ form.media }}
+
+<div class="container mt-5">
+    <h1 class="display-1">Event</h1>
+    <div class="row">
+        <div class="col-12">
+            <form action="{% url 'event' %}" method="post">
+                <div class="input-group">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="input-group mb-3">
+                        <span class="input-group-text w-25">{{ field.label_tag }}</span>
+                        {{ field }}
+                    </div>
+                    {% endfor %} 
+                </div>
+                <div class="d-flex">
+                    {% if edit %}
+                    <input class="btn btn-warning ms-auto" type="submit" value="Event aktualisieren">
+                    {% else %}
+                    <input class="btn btn-success ms-auto" type="submit" value="Neues Event erstellen">
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

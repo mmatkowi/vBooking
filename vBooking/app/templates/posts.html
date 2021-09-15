@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="display-1">Posts</h1>
+    <form action="/posts" method="get">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search..." name="searchTerm">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </div>
+    </form>
+    {% if search_term == "" %}
+    <h4>Type something and submit to search content.</h4>
+    {% elif search_term != ""%}
+    <h4>Results for you search "{{search_term}}".</h4>
+    {% endif %}
+    <div id="posts">
+        <ul class="list-group">
+            {% for post in posts %}
+            <a class="list-group-item" href="/post?id={{post.id}}">{{post.title}}</a>
+            {% endfor %}
+          </ul>
+    </div>
+</div>
+{% endblock %}
